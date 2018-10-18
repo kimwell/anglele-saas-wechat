@@ -1,0 +1,12 @@
+<view class="user-info">
+  <view class='user-info-main'>
+    <i-cell-group>
+      <i-cell title="供应商名称">
+        <view slot="footer">{{userInfo.extraInfo.business.name}}</view>
+      </i-cell>
+      <i-cell title="联系人"><view slot="footer">{{userInfo.extraInfo.business.contactPeople}}</view></i-cell>
+      <i-cell title="联系方式"><view slot="footer">{{userInfo.extraInfo.business.contactPhone}}</view></i-cell>
+      <i-cell title="地址"><view slot="footer">{{userInfo.extraInfo.business.provinceName}}{{userInfo.extraInfo.business.cityName}}{{userInfo.extraInfo.business.districtName}}{{userInfo.extraInfo.business.address}}</view></i-cell>
+    </i-cell-group>
+  </view>
+</view>

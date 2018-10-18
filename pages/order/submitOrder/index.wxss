@@ -1,0 +1,109 @@
+page{
+  background-color: #f8f8f8;
+}
+.submit-order{
+  padding-bottom: 98rpx;
+  padding-top: 40rpx;
+}
+.order-info{
+  background-color: #fff;
+  padding: 20rpx 40rpx;
+  font-size: 24rpx;
+  color: #333;
+}
+.address{
+  margin: 25rpx 0;
+}
+.address-label label{
+  display: inline-block;
+  margin-right: 30rpx;
+}
+.business{
+  margin: 15rpx 0;
+}
+.business .phone{
+  display: inline-block;
+  margin: 0 15rpx;
+}
+
+.order-info-item{
+  position: relative;
+  min-height: 160rpx;
+  padding: 20rpx 0 20rpx 180rpx;
+  border-bottom: 1px solid rgba(0, 0, 0, .05);
+}
+.order-info-item:last-child{
+  border-bottom: 0;
+}
+.order-info-item-left{
+  position: absolute;
+  top: 20rpx;
+  left: 0;
+  width: 160rpx;
+  height: 160rpx;
+}
+.order-info-item-right{
+  position: relative;
+}
+.order-info-item-right .totalPrice{
+  position: absolute;
+  right: 0;
+  top: 40rpx;
+  font-size: 24rpx;
+}
+.order-info-item-right .totalPrice label{
+  font-size: 36rpx;
+}
+.order-info .order-info-item-right .name{
+  font-size: 30rpx;
+}
+.order-info .order-info-item-right .price{
+  margin: 20rpx 0;
+}
+.productImg{
+  width: 160rpx;
+  height: 160rpx;
+}
+.submit-bar{
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: 98rpx;
+  line-height: 98rpx;
+  background-color: #fff;
+}
+.submit-btn{
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 240rpx;
+  text-align: center;
+  line-height: 98rpx;
+  color: #fff;
+  background-color: #23D5C0;
+  font-size: 36rpx;
+}
+.submit-btn.disable{
+  background-color: #eee;
+}
+.submit-bar .price{
+  display: inline-block;
+  padding: 0 40rpx;
+  font-size: 24rpx;
+}
+.submit-bar .price label{
+  font-size: 30rpx;
+}
+.remark{
+  margin: 40rpx 0;
+}
+.area{
+  height: 80rpx;
+  width: 100%;
+}
+.remark-title{
+  font-size: 28rpx;
+  margin-bottom: 15rpx;
+}

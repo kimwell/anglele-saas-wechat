@@ -1,0 +1,23 @@
+<view>
+  <view class='login-input'>
+  <view class='login-logo-wrap'>
+    <image src="../../static/images/logo.png"></image>
+    <view class='logo-name'>智慧安农</view>
+  </view>
+  <view class='login-form-wrap'>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class="section">
+        <image class='icon-phone' src="../../static/images/login-icon-phone.png"></image>
+        <input name="user" type="number" maxlength='11' placeholder-class="holder" placeholder="请输入账号" />
+      </view>
+      <view class="section">
+        <image class='icon-password' src="../../static/images/login-icon-password.png"></image>
+        <input password type='text' name="password" placeholder-class="holder" placeholder="请输入密码" />
+      </view>
+      <view class="section">
+          <button formType="submit" type='primary' class='login' hover-class="hoverClass">登录</button>
+      </view>
+    </form>
+  </view>
+  </view>
+</view>

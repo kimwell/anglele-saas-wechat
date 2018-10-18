@@ -1,0 +1,9 @@
+<view class="user-info">
+  <view class='user-info-main'>
+    <i-cell-group>
+      <i-cell title="修改密码" is-link url="/pages/user/modifyPassword/index">
+      </i-cell>
+    </i-cell-group>
+  </view>
+</view>
+<view class="quit" bindtap='loginOut'>退出登录</view>

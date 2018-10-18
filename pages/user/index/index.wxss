@@ -1,0 +1,14 @@
+page {
+  background-color: #f1f1f4;
+}
+
+.user-info {
+  background-color: #fff;
+  margin-top: 40rpx;
+}
+
+.user-info-main image {
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+}

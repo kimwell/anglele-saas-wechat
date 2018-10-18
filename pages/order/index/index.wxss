@@ -1,0 +1,132 @@
+page{
+  background-color: #F1F1F4;
+}
+.tab-nav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  background-color: #F1F1F4;
+  z-index: 9;
+}
+.tab-nav-item{
+  flex: 1;
+  text-align: center;
+  padding: 15rpx 0;
+}
+.tab-nav-item-name{
+  font-size: 30rpx;
+  color: #333;
+}
+.tab-nav-item image{
+  width: 40rpx;
+  height: 40rpx;
+}
+.tab-nav-item-name.current{
+  color: #23D5C0
+}
+.order-main{
+  padding: 0 10rpx;
+  padding-top: 130rpx;
+}
+.order-main-item{
+  background-color: #fff;
+  padding: 18rpx 28rpx;
+  font-size: 30rpx;
+  color: #333;
+  margin-bottom: 40rpx;
+}
+.order-name{
+  margin: 25rpx 0;
+}
+.order-price .status{
+  float: right;
+  font-size: 24rpx;
+}
+.order-option{
+  text-align: right;
+  margin-top: 20rpx;
+}
+.order-option label{
+  display: inline-block;
+  font-size: 24rpx;
+  color: #333;
+  border: 1px solid #e6e6e6;
+  height: 40rpx;
+  line-height: 40rpx;
+  width: 120rpx;
+  text-align: center;
+  border-radius: 20rpx;
+  margin-left: 20rpx;
+}
+.no-data{
+  text-align: center;
+}
+.no-data image{
+  padding-top: 150rpx;
+  width: 284rpx;
+  height: 297rpx;
+}
+.no-data-title{
+  margin: 20rpx 0;
+  font-size: 30rpx;
+  color: #333;
+}
+.no-data-desc{
+  font-size: 24rpx;
+  color: #999;
+}
+.loading{
+  font-size: 30rpx;
+  color: #333;
+  text-align: center;
+  padding: 10rpx 0 20rpx;
+}
+.ipt-view{
+  padding: 20rpx 15rpx;
+}
+.ipt{
+  border: 1px solid #e6e6e6;
+  font-size: 26rpx;
+  color: #333;
+  padding: 10rpx;
+  text-align: left;
+  border-radius: 3rpx;
+  height: 130rpx;
+  width: 485rpx;
+}
+.pipt{
+  text-align: left;
+  font-size: 26rpx;
+  color: #666;
+}
+.item-imgs {
+  padding: 20rpx 0;
+}
+
+.item-imgs-cell {
+  position: relative;
+  display: inline-block;
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 20rpx;
+}
+
+.productImg {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.item-imgs-cell.arrow::after {
+  content: '';
+  position: absolute;
+  top: 32rpx;
+  left: 0;
+  width: 16rpx;
+  height: 16rpx;
+  border-right: 1px solid #999;
+  border-bottom: 1px solid #999;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}

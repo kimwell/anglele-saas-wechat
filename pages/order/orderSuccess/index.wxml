@@ -1,0 +1,10 @@
+<view class='order-success'>
+<view class='order-success-icon'>
+  <image src="../../../static/images/order-success.png"></image>
+  <view>订单提交成功</view>
+</view>
+<view class='order-success-btns'>
+  <view class='btn' data-router="index" bindtap='goRouter'>返回首页</view>
+  <view class='btn' data-router="order" bindtap='goRouter'>查看订单</view>
+</view>
+</view>

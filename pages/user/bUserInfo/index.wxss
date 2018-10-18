@@ -1,0 +1,12 @@
+.user-info{
+  background-color: #F1F1F4;
+  padding-top: 40rpx;
+}
+.user-info-main{
+  background-color: #fff;
+}
+.user-info-main image{
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+}

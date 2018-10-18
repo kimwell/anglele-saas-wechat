@@ -1,0 +1,3 @@
+<i-input title="新密码" value="{{dataApi.newPassword}}" bind:change="newPsd" type="password" maxlength="20" placeholder="新密码" />
+<i-input title="再次输入" value="{{dataApi.newPasswordAgain}}" bind:change="newagaPsd" maxlength="20" type="password" placeholder="再次输入" />
+<view class="quit" bindtap='modifyOk'>确定修改</view>

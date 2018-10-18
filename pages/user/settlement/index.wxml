@@ -1,0 +1,55 @@
+<view class='settlement-main-nav'>
+  <view class='nav-main'>
+    <view wx:for="{{navData}}" wx:for-index="idx" wx:key="idx" data-item="{{item}}" class="nav-item {{item.id === navIndex ? 'on':''}}" bindtap='switchNav'>{{item.name}}</view>
+  </view>
+  <view class='settlement-main-search'>
+    <image class='search-icon' src="../../../static/images/search.png"></image>
+    <input placeholder='单号' bindconfirm="searchIput" type='text' confirm-type="search" placeholder-class="holder"></input>
+  </view>
+</view>
+<view class="settlement-main">
+  <view class="settlement-main-item" wx:if="{{pageApi.settlementStatus != 2}}">
+    <view class='settlement-item' wx:for="{{list}}" wx:for-index="index" data-item="{{item}}" wx:key="{{item.id}}" bindtap='goDetail'>
+      <view class='totalMoney'>
+        <label wx:if="{{item.settlementStatus === 0}}" class="status {{'status-'+item.settlementStatus}}">未结算</label>
+        <label wx:if="{{item.settlementStatus === 2}}" class="status {{'status-'+item.settlementStatus}}">已结算</label>
+        总金额：￥{{item.amount}}</view>
+      <view class="item-imgs">
+        <block wx:for="{{item.orderItems}}" wx:for-index="idx" wx:for-item="img">
+          <view class='item-imgs-cell' wx:if="{{idx < 3}}">
+            <image class='productImg' src="{{img.productImg}}"></image>
+          </view>
+        </block>
+        <view class='item-imgs-cell arrow'></view>
+      </view>
+      <view class='orderid'>订单编号：{{item.id}}</view>
+      <view class="settlementid" wx:if="{{item.settlementStatus === 2}}">结算单号：{{item.settlementId}}</view>
+    </view>
+  </view>
+  <view class="settlement-main-item" wx:else>
+    <view class='settlement-item' wx:for="{{list}}" wx:for-index="index" data-item="{{item}}" wx:key="*this">
+      <view class='settlement-time'>时间：{{item.cTime}}</view>
+      <view class='settlement-id'>
+        <label>总计：￥{{item.totalPrice}}</label>结算单号：{{item.settlementId}}</view>
+      <view class='settlement-item-block' wx:for="{{item.orders}}" wx:for-index="index" wx:for-item="order" data-item="{{order}}" wx:key="*this" bindtap='goDetail'>
+        <view class='order-money'>
+          <label class="status status-2">已结算</label>
+          总金额：￥{{order.amount}}</view>
+        <view class="item-imgs">
+          <block wx:for="{{order.orderItems}}" wx:for-index="idx" wx:for-item="img" wx:key="*this">
+            <view class='item-imgs-cell' wx:if="{{idx < 3}}">
+              <image class='productImg' src="{{img.productImg != '' ? img.productImg : '../../static/images/product-no-img.png'}}"></image>
+            </view>
+          </block>
+          <view class='item-imgs-cell arrow'></view>
+        </view>
+        <view class='orderid'>订单号：￥{{order.id}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='loading' wx:if="{{loading}}">正在加载...</view>
+<view class='no-data' wx:if="{{list.length === 0 && !loading}}">
+  <image src="../../../static/images/no-order.png"></image>
+  <view class='no-data-title'>暂无结算单</view>
+</view>

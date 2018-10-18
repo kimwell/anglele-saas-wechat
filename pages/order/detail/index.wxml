@@ -1,0 +1,66 @@
+<view class="order-detail">
+  <view class='order-detail-item'>
+    <view class='order-detail-item-title'>
+      <view wx:if="{{item.order.status === 3 || item.order.status === 2}}" class="status {{'status' + item.order.status}}">待发货</view>
+      <label wx:if="{{item.order.status === 5}}" class="status {{'status' + item.order.status}}">已完成</label>
+      <label wx:if="{{item.order.status === 4}}" class="status {{'status' + item.order.status}}">待收货</label>
+      <label wx:if="{{item.order.status === 9}}" class="status {{'status' + item.order.status}}">已取消</label>
+      {{item.order.business.name}}
+    </view>
+    <view class='order-detail-item-main'>
+      <view class='order-item' wx:for="{{item.orderItem}}" wx:for-index="index" wx:for-item="goods" wx:key="{{item.id}}">
+        <view class='order-item-pic'>
+          <image src="{{goods.productImg != '' ? goods.productImg : '../../../static/images/product-no-img.png'}}"></image>
+        </view>
+        <view class="order-item-info {{item.order.status === 5 ? 'order-item-info-real':''}}">
+          <view class='order-item-name'>{{goods.productName}}</view>
+          <view class='order-item-price order-item-cell'>
+            <label class='realData' wx:if="{{item.order.status === 5}}">{{goods.realPrice}}元/{{goods.unit}}</label>
+            <label class='data'>{{goods.price}}元/{{goods.unit}}</label>
+          </view>
+          <view class='order-item-cell'>
+            <label class='realData' wx:if="{{item.order.status === 5}}">{{goods.realNum}}{{goods.unit}}</label>
+            <label class='data'>×{{goods.num}}{{goods.unit}}</label>
+          </view>
+        <view class="order-item-totalprice {{item.order.status === 5 ? 'realamount':''}}">
+          <view class='realAmount' wx:if="{{item.order.status === 5}}">￥{{goods.realTotalPrice}}</view>
+          <view class='amount'>￥{{goods.totalPrice}}</view>
+        </view>
+        </view>
+      </view>
+      <view class='order-item-total'>合计：
+        <label>￥{{item.order.amount}}</label>
+      </view>
+    </view>
+  </view>
+  <view class='order-detail-item'>
+    <view class='order-detail-item-title border'>
+      订单信息
+    </view>
+    <view class='order-detail-item-main'>
+      <view class='order-info-cell'>
+        <label>{{item.order.id}}</label>
+        订单编号</view>
+      <view class='order-info-cell' wx:if="{{item.order.settlementId != ''}}">
+        <label>{{item.order.settlementId}}</label>
+        结算单号</view>
+      <view class='order-info-cell'>
+        <label>{{item.order.cTime}}</label>下单时间</view>
+    </view>
+  </view>
+  <view class='order-detail-item'>
+    <view class='order-detail-item-title border'>
+      收货人信息
+    </view>
+    <view class='order-detail-item-main'>
+      <view class='order-info-cell'>
+        <label>{{item.order.contactPeople}}</label>收货人</view>
+      <view class='order-info-cell'>
+        <label>{{item.order.contactPhone}}</label>联系方式</view>
+      <view class='order-info-cell'>
+        <label>{{item.order.address}}</label>联系地址</view>
+      <view class='order-info-cell'>
+        <label>{{item.order.remark != '' ? item.order.remark : '无'}}</label>订单备注</view>
+    </view>
+  </view>
+</view>

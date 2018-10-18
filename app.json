@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/user/settlement/index",
+    "pages/order/orderSuccess/index",
+    "pages/order/submitOrder/index",
+    "pages/login/index",
+    "pages/order/index/index",
+    "pages/user/index/index",
+    "pages/user/userInfo/index",
+    "pages/user/bUserInfo/index",
+    "pages/user/setting/index",
+    "pages/user/modifyPassword/index",
+    "pages/order/detail/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "#fff",
+    "navigationBarBackgroundColor": "#23D5C0",
+    "navigationBarTitleText": "首页",
+    "navigationBarTextStyle": "#fff"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#23D5C0",
+    "backgroundColor": "#ffffff",
+    "navigationBarTitleText": "智慧安农",
+    "navigationBarTextStyle": "black",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "./static/images/index-tab-icon.png",
+        "selectedIconPath": "./static/images/index-tab-icon-selected.png"
+      },
+      {
+        "pagePath": "pages/order/index/index",
+        "text": "订单",
+        "iconPath": "./static/images/order-tab-icon.png",
+        "selectedIconPath": "./static/images/order-tab-icon-selected.png"
+      },
+      {
+        "pagePath": "pages/user/index/index",
+        "text": "我的",
+        "iconPath": "./static/images/user-tab-icon.png",
+        "selectedIconPath": "./static/images/user-tab-icon-selected.png"
+      }
+    ]
+  }
+}

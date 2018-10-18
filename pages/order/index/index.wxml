@@ -1,0 +1,42 @@
+<view class="tab-nav">
+  <view class='tab-nav-item' wx:for="{{tabNav}}" wx:for-index="index" data-index="{{item.id}}" bindtap="switchNav" wx:key="{{item.id}}">
+    <image src="{{item.icon}}"></image>
+    <view class="tab-nav-item-name {{tabIndex=== index + 1 ? 'current':''}}">{{item.name}}</view>
+  </view>
+</view>
+<view class='order-main'>
+  <view class='order-main-item' wx:for="{{list}}" wx:for-index="index" data-index="{{item.id}}" wx:key="{{item.id}}" bindtap='goDetail'>
+    <view class='order-price'>
+      <view wx:if="{{item.status === 3 || item.status === 2}}" class="status {{'status' + item.status}}">待发货</view>
+      <view wx:if="{{item.status === 5}}" class="status {{'status' + item.status}}">已完成</view>
+      <view wx:if="{{item.status === 4}}" class="status {{'status' + item.status}}">待收货</view>
+      <view wx:if="{{item.status === 9}}" class="status {{'status' + item.status}}">已取消</view>
+      总金额：￥{{item.amount}}
+    </view>
+    <view class='order-name'>{{item.orderName}}</view>
+    <view class="item-imgs">
+      <block wx:for="{{item.orderItems}}" wx:for-index="idx" wx:for-item="img" wx:key="idx">
+        <view class='item-imgs-cell' wx:if="{{idx < 3}}">
+          <image class='productImg' src="{{img.productImg != '' ? img.productImg : '../../../static/images/product-no-img.png'}}"></image>
+        </view>
+      </block>
+      <view class='item-imgs-cell arrow'></view>
+    </view>
+    <view class='order-time'>下单时间：{{item.ctime}}</view>
+    <view class='order-option'>
+      <label wx:if="{{item.status === 3 || item.status === 2}}" data-order-id="{{item.id}}" catchtap='cancelOrder'>取消订单</label>
+      <label catchtap='orderAgain' data-order-id="{{item.id}}">再次购买</label>
+    </view>
+  </view>
+  <view class='loading' wx:if="{{loading}}">正在加载...</view>
+  <view class='no-data' wx:if="{{list.length === 0 && !loading}}">
+    <image src="../../../static/images/no-order.png"></image>
+    <view class='no-data-title'>暂无订单</view>
+    <view class='no-data-desc'>你还没有订单哦！快去下单吧！</view>
+  </view>
+</view>
+<i-modal title="请填写取消原因" visible="{{ cancelShow }}" bind:ok="cancelOk" bind:cancel="cancelClose">
+  <view class='ipt-view'>
+    <input class='ipt' placeholder-class="pipt" bindblur="reasonIpu" value="{{cancelApi.cancelReason}}" placeholder='取消原因'></input> 
+  </view>
+</i-modal>

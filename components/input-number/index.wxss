@@ -1,0 +1,31 @@
+.i-input-number {
+  display: inline-block;
+  color: #333;
+  vertical-align: top;
+  box-shadow: 0px 0 3px rgba(0, 0, 0, .1)
+}
+
+.i-input-number view {
+  display: inline-block;
+  text-align: center;
+  min-width: 40px;
+  height: 40rpx;
+  line-height: 40rpx;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+.i-input-number-text {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  height: 40rpx;
+  width: 40rpx;
+  min-height: auto;
+  font-size: 12px;
+  line-height: 40rpx;
+}
+
+.i-input-number-disabled {
+  color: #e6e6e6;
+}

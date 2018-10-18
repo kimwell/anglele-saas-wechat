@@ -1,0 +1,30 @@
+.order-success-icon{
+  text-align: center;
+  padding-top: 80rpx;
+}
+.order-success-icon image{
+  width: 319rpx;
+  height: 284rpx;
+}
+.order-success-icon view{
+  font-size: 30rpx;
+  color: #333;
+  margin-top: 30rpx;
+}
+.order-success-btns{
+  padding-top: 100rpx;
+  text-align: center;
+}
+.order-success-btns .btn{
+  display: inline-block;
+  width: 200rpx;
+  height: 88rpx;
+  text-align: center;
+  line-height: 88rpx;
+  font-size: 30rpx;
+  color: #fff;
+  margin: 0 20rpx;
+  background-color: #73d858;
+  border-radius: 10rpx;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .2)
+}

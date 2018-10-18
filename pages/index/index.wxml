@@ -1,0 +1,79 @@
+<!--index.wxml-->
+<view class="container">
+  <view class='banner'>
+    <image src="https://resource.anglele.com/saas/static/wx_banner.png"></image>
+  </view>
+  <view class='goods-view-main'>
+    <view class='goods-view'>
+      <view class='goods-view-nav'>
+        <scroll-view scroll-y style="height: {{clientHeight - bHeiht - cartHeight + 'px'}}">
+          <view class='goods-nav-item' wx:for="{{list}}" wx:for-index="index" wx:key="{{item.id}}">
+            <view class="goods-nav-name {{selectIndex === index ? 'selected':''}}" data-index="{{index}}" bindtap="switchNav">{{item.name}}</view>
+          </view>
+        </scroll-view>
+      </view>
+      <view class='goods-view-content'>
+        <scroll-view scroll-y style="height: {{clientHeight - bHeiht - cartHeight + 'px'}}" scroll-into-view="{{toView}}" bindscroll="goodsScroll" scroll-with-animation="{{true}}">
+          <i-sticky scrollTop="{{scrollTop}}">
+            <i-sticky-item i-class="i-sticky-title" wx:for="{{list}}" id="{{item.viewId}}" wx:for-index="index" wx:key="{{item.id}}">
+              <view slot="title">
+                {{item.name}}
+              </view>
+              <view slot="content">
+                <view class='i-sticky-content' wx:for="{{item.products}}" wx:for-item="itemSub" wx:for-index="subIndex" wx:key="{{itemSub.id}}">
+                  <view class='products-info'>
+                    <view class='info-left'>
+                      <image src="{{itemSub.productImg !='' ? itemSub.productImg:'../../static/images/product-no-img.png'}}" mode="aspectFill" class='productImg' lazy-load></image>
+                    </view>
+                    <view class='info-right'>
+                      <view class='products-name'>{{itemSub.name}}</view>
+                      <view class="products-num">
+                        <i-input-number value="{{ itemSub.num }}" min="0" max="9999999999" data-item="{{itemSub}}" data-index="{{index}}" data-subIndex="{{subIndex}}" bindchange="handleChange" />
+                        <label wx:if="{{itemSub.totalPrice > 0}}">￥{{itemSub.totalPrice}}</label>
+                      </view>
+                      <view class="products-price">
+                        <label>{{itemSub.price}}元</label>/{{itemSub.unit}}
+                      </view>
+                    </view>
+                  </view>
+                  <view class='products-desc'>{{itemSub.productDes}}</view>
+                </view>
+              </view>
+            </i-sticky-item>
+          </i-sticky>
+        </scroll-view>
+      </view>
+    </view>
+    <view class='cart-main'>
+    <view class='cart-num' bindtap='showCoverCart'>
+      <label class='num'>{{totalNum}}</label>
+      <image class='cart-icon' src="../../static/images/cart-icon.png"></image>
+    </view>
+    <view class='cart-all-price'>
+      <view class='cart-all-price-num'>￥{{allPrice}}</view>
+      <view class='cart-all-price-desc'>配送无忧，及时到达</view>
+    </view>
+      <view class="cart-confirm-btn {{canOrder ? '':'disable'}}" bindtap='confirmOrder'>提交订单</view>
+    </view>
+  </view>
+</view>
+<view class="selected-goods-cover {{showCover ? 'show':''}}">
+  <view class='selected-goods-header'><label bindtap='clearCart'><image src="../../static/images/clear-cart.png"></image>清空</label>已选商品</view>
+  <view class='selected-goods-main'>
+    <scroll-view scroll-with-animation="{{true}}" scroll-y="true" class='scrollView'>
+    <block wx:for="{{list}}" id="{{item.viewId}}" wx:for-index="index" wx:key="{{item.id}}">
+      <view wx:for="{{item.products}}" wx:for-item="itemSub" wx:for-index="subIndex" wx:key="{{itemSub.id}}">
+       <view class='cart-goods-item'wx:if="{{itemSub.num > 0}}">
+        <view class='cart-goods-item-cell'>{{itemSub.name}}</view>
+        <view class='cart-goods-item-cell price'>￥{{itemSub.price}}</view>
+        <view class='cart-goods-item-cell'>
+          <i-input-number value="{{ itemSub.num }}" min="0" max="9999999999" data-item="{{itemSub}}" data-index="{{index}}" data-subIndex="{{subIndex}}" bindchange="handleChange" />
+        </view>
+       </view>
+      </view>
+    </block>
+    </scroll-view>
+  </view>
+  <view class='selected-goods-footer'>已选商品</view>
+</view>
+<view class="selected-goods-cover-mask {{showCover ? 'show':''}}" catchtap='hideCover'></view>

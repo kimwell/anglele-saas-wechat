@@ -1,0 +1,154 @@
+page {
+  background-color: #f8f8f8;
+}
+.settlement-main-nav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background-color: #f8f8f8;
+}
+.nav-main{
+  display: flex;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+}
+.nav-main .nav-item{
+  flex: 1;
+  text-align: center;
+  line-height: 80rpx;
+}
+.nav-main .nav-item.on{
+  color: #23D5C0;
+}
+.settlement-main-search{
+  position: relative;
+  height: 60rpx;
+  padding: 20rpx 40rpx;
+}
+.settlement-main-search input{
+  height: 40rpx;
+  line-height: 40rpx;
+  padding-left: 60rpx;
+  border-bottom: 1px solid #999;
+}
+.holder{
+  font-size: 28rpx;
+  color: #999;
+  padding: 0 15rpx;
+}
+.search-icon{
+  position: absolute;
+  top: 35rpx;
+  left: 40rpx;
+  width: 30rpx;
+  height: 30rpx;
+  z-index: 999
+}
+.settlement-main{
+  padding-top: 180rpx;
+}
+.settlement-item {
+  background-color: #fff;
+  padding: 20rpx 40rpx;
+  margin-bottom: 40rpx;
+  font-size: 24rpx;
+}
+
+.totalMoney {
+  font-size: 24rpx;
+  color: #333;
+}
+
+.totalMoney .status ,.order-money .status{
+  float: right;
+  font-size: 24rpx;
+}
+
+.totalMoney .status.status-0 {
+  color: #f00;
+}
+
+.totalMoney .status.status-2 ,.order-money .status.status-2{
+  color: #23d5c0;
+}
+
+.orderid {
+  color: #666;
+}
+
+.settlementid {
+  color: #333;
+}
+
+.item-imgs {
+  padding: 20rpx 0;
+}
+
+.item-imgs-cell {
+  position: relative;
+  display: inline-block;
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 20rpx;
+}
+
+.productImg {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.item-imgs-cell.arrow::after {
+  content: '';
+  position: absolute;
+  top: 32rpx;
+  left: 0;
+  width: 16rpx;
+  height: 16rpx;
+  border-right: 1px solid #999;
+  border-bottom: 1px solid #999;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.settlement-item-block{
+  padding: 20rpx 0;
+  border-bottom: 1px solid rgba(0, 0, 0, .06) 
+}
+.settlement-item-block:last-child{
+  border-bottom: 0;
+}
+.order-money{
+  font-size: 30rpx;
+  color: #333;
+}
+.settlement-time{
+  margin-bottom: 15rpx;
+}
+.settlement-id label{
+  float: right;
+}
+.loading{
+  font-size: 30rpx;
+  color: #333;
+  text-align: center;
+  padding: 10rpx 0 20rpx;
+}
+.no-data{
+  text-align: center;
+}
+.no-data image{
+  padding-top: 150rpx;
+  width: 284rpx;
+  height: 297rpx;
+}
+.no-data-title{
+  margin: 20rpx 0;
+  font-size: 30rpx;
+  color: #333;
+}
+.no-data-desc{
+  font-size: 24rpx;
+  color: #999;
+}

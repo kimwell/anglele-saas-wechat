@@ -1,0 +1,33 @@
+<view class="submit-order">
+  <view class='order-info'>
+    <view>{{userInfo.extraInfo.name}}</view>
+    <view class='address'>{{userInfo.extraInfo.provinceName}}{{userInfo.extraInfo.cityName}}{{userInfo.extraInfo.districtName}}{{userInfo.extraInfo.address}}</view>
+    <view class='address-label'><label>{{userInfo.extraInfo.contactPeople}}</label><label>{{userInfo.extraInfo.contactPhone}}</label></view>
+  </view>
+  <view class='order-info business'>
+    <view>供应商：{{userInfo.extraInfo.business.name}}<label class='phone'>{{userInfo.extraInfo.business.contactPhone}}</label></view>
+  </view>
+  <view class='order-info order'>
+    <view class='order-info-main'>
+      <view class='order-info-item' wx:for="{{cartItem}}" wx:key="{{index}}">
+        <view class='order-info-item-left'>
+          <image class='productImg' src="{{item.productImg != '' ? item.productImg : '../../../static/images/product-no-img.png'}}"></image>
+        </view>
+        <view class='order-info-item-right'>
+          <view class='name'>{{item.name}}</view>
+          <view class='price'>{{item.price}}元/{{item.unit}}</view>
+          <view class='num'>{{item.num}}{{item.unit}}</view>
+          <view class='totalPrice'>￥<label>{{item.totalPrice}}</label></view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='order-info remark'>
+  <view class='remark-title'>订单备注</view>
+    <textarea class='area' placeholder='如需备注，请在此填写' bindblur="remarkArea"></textarea>
+  </view>
+</view>
+<view class="submit-bar">
+<view class='price'>合计：￥<label>{{totalPrice}}</label></view>
+  <view class="submit-btn {{canOrder ? '':'disable'}}" bindtap='submitOrder'>提交订单</view>
+</view>
