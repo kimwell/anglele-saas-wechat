@@ -17,7 +17,7 @@ Page({
     let id = options.id;
     app.api.findOneOrder({id: id}).then(res =>{
       if(res.code === 1000){
-        res.data.order.cTime = app.utils.dateformat(res.data.order.createTime);
+        res.data.order.cTime = app.utils.dateformat(res.data.order.newOrderDate);
         res.data.order.status = Number(res.data.order.status)
         that.setData({
           item: Object.assign({},res.data)

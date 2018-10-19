@@ -24,7 +24,7 @@
                 <view class='i-sticky-content' wx:for="{{item.products}}" wx:for-item="itemSub" wx:for-index="subIndex" wx:key="{{itemSub.id}}">
                   <view class='products-info'>
                     <view class='info-left'>
-                      <image src="{{itemSub.productImg !='' ? itemSub.productImg:'../../static/images/product-no-img.png'}}" mode="aspectFill" class='productImg' lazy-load></image>
+                      <image src="{{itemSub.productImg !='' ? itemSub.productImg:'../../static/images/product-no-img.png'}}" mode="aspectFill" class='productImg' lazy-load="{{true}}"></image>
                     </view>
                     <view class='info-right'>
                       <view class='products-name'>{{itemSub.name}}</view>
@@ -64,7 +64,7 @@
     <scroll-view scroll-with-animation="{{true}}" scroll-y="true" class='scrollView'>
     <block wx:for="{{list}}" id="{{item.viewId}}" wx:for-index="index" wx:key="{{item.id}}">
       <view wx:for="{{item.products}}" wx:for-item="itemSub" wx:for-index="subIndex" wx:key="{{itemSub.id}}">
-       <view class='cart-goods-item'wx:if="{{itemSub.num > 0}}">
+       <view class='cart-goods-item' wx:if="{{itemSub.num > 0}}">
         <view class='cart-goods-item-cell'>{{itemSub.name}}</view>
         <view class='cart-goods-item-cell price'>￥{{itemSub.price}}</view>
         <view class='cart-goods-item-cell'>

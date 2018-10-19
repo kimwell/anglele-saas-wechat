@@ -47,7 +47,7 @@ Page({
     app.api.orderPage(this.data.pageApi).then(res => {
       if (res.code === 1000) {
         res.data.data.forEach(el => {
-          el.ctime = app.utils.dateformat(el.createTime);
+          el.ctime = app.utils.dateformat(el.newOrderDate);
           el.status = Number(el.status)
         })
         if (res.data.data.length < that.data.pageApi.pageSize) {
@@ -145,5 +145,17 @@ Page({
    */
   onReachBottom: function() {
     if (this.data.loading) this.getList();
+  },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    wx.stopPullDownRefresh()
+    this.setData({
+      list: [],
+      loading: true,
+      'pageApi.pageIndex': 0
+    })
+    this.getList();
   }
 })

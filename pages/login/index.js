@@ -29,15 +29,15 @@ Page({
             url: '/pages/index/index'
           })
         } else {
-          wx.showModal({
-            content: res.message,
-            icon:'none'
+          wx.showToast({
+            title: res.message,
+            icon: 'none'
           })
         }
       })
     } else {
-      wx.showModal({
-        content: '手机号码或密码不能为空',
+      wx.showToast({
+        title: '手机号码或密码不能为空',
         icon: 'none'
       })
     }

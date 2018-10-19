@@ -45,7 +45,6 @@ Page({
           list: lists
         })
         this.setItemNum();
-        this.handleAllPrice();
       }
     })
   },

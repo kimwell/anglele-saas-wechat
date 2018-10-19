@@ -2,5 +2,6 @@
   "usingComponents": {
     "i-modal": "../../../components/modal/index"
   },
-  "navigationBarTitleText": "我的订单"
+  "navigationBarTitleText": "我的订单",
+  "enablePullDownRefresh": true
 }
