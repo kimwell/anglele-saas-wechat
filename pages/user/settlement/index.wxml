@@ -11,8 +11,8 @@
   <view class="settlement-main-item" wx:if="{{pageApi.settlementStatus != 2}}">
     <view class='settlement-item' wx:for="{{list}}" wx:for-index="index" data-item="{{item}}" wx:key="{{item.id}}" bindtap='goDetail'>
       <view class='totalMoney'>
-        <label wx:if="{{item.settlementStatus === 0}}" class="status {{'status-'+item.settlementStatus}}">未结算</label>
-        <label wx:if="{{item.settlementStatus === 2}}" class="status {{'status-'+item.settlementStatus}}">已结算</label>
+        <label wx:if="{{item.settlementStatus === '0'}}" class="status {{'status-'+item.settlementStatus}}">未结算</label>
+        <label wx:if="{{item.settlementStatus === '2'}}" class="status {{'status-'+item.settlementStatus}}">已结算</label>
         总金额：￥{{item.amount}}</view>
       <view class="item-imgs">
         <block wx:for="{{item.orderItems}}" wx:for-index="idx" wx:for-item="img">
@@ -23,7 +23,7 @@
         <view class='item-imgs-cell arrow'></view>
       </view>
       <view class='orderid'>订单编号：{{item.id}}</view>
-      <view class="settlementid" wx:if="{{item.settlementStatus === 2}}">结算单号：{{item.settlementId}}</view>
+      <view class="settlementid" wx:if="{{item.settlementStatus === '2'}}">结算单号：{{item.settlementId}}</view>
     </view>
   </view>
   <view class="settlement-main-item" wx:else>

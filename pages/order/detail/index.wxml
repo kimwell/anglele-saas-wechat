@@ -28,8 +28,10 @@
         </view>
         </view>
       </view>
-      <view class='order-item-total'>合计：
-        <label>￥{{item.order.amount}}</label>
+      <view class="order-item-total {{item.order.status === 5 ? 'real':''}}">
+        <label class='red'>合计：</label>
+        <label class='red' wx:if="{{item.order.status === 5}}">￥{{item.order.realAmount}}</label>
+        <label class='amount'>￥{{item.order.amount}}</label>
       </view>
     </view>
   </view>

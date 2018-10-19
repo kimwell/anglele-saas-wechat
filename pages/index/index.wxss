@@ -13,12 +13,17 @@
 
 .goods-view-nav {
   width: 160rpx;
+  border-right: 1px solid rgba(0, 0, 0, .08)
 }
 
 .goods-nav-item, .i-sticky-content {
   position: relative;
 }
-
+::-webkit-scrollbar{
+width: 0;
+height: 0;
+color: transparent;
+}
 .goods-nav-item::after {
   content: '';
   position: absolute;
@@ -38,7 +43,14 @@
   background-color: #fff;
   overflow: hidden;
   width: 590rpx;
-  padding-left: 20rpx;
+  padding-left: 10rpx;
+}
+.i-sticky-wrap .title{
+  height: 50rpx;
+  line-height: 50rpx;
+  background-color: #eee;
+  font-size: 26rpx;
+  padding: 0 20rpx;
 }
 
 .i-sticky-content::after {
@@ -52,10 +64,6 @@
 }
 
 .i-sticky-content {
-  padding: 10rpx 0;
-}
-
-.products {
   padding: 10rpx 0;
 }
 
@@ -110,13 +118,13 @@
   font-size: 20rpx;
   color: #666;
   margin-top: 15rpx;
-  padding: 20rpx;
+  height: 22rpx;
   line-height: 22rpx;
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
 
@@ -143,7 +151,7 @@
 
 .goods-nav-name.selected {
   background-color: #eee;
-  color: #73d858;
+  color: #23D5C0;
 }
 
 .cart-main {
@@ -166,7 +174,7 @@
   line-height: 80rpx;
   text-align: center;
   font-size: 36rpx;
-  background-color: #73d858;
+  background-color: #23d5c0;
 }
 .cart-confirm-btn.disable{
   background-color: #eee;

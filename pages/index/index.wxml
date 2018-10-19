@@ -6,7 +6,7 @@
   <view class='goods-view-main'>
     <view class='goods-view'>
       <view class='goods-view-nav'>
-        <scroll-view scroll-y style="height: {{clientHeight - bHeiht - cartHeight + 'px'}}">
+        <scroll-view class='view-nav' scroll-y style="height: {{clientHeight - bHeiht - cartHeight + 'px'}}">
           <view class='goods-nav-item' wx:for="{{list}}" wx:for-index="index" wx:key="{{item.id}}">
             <view class="goods-nav-name {{selectIndex === index ? 'selected':''}}" data-index="{{index}}" bindtap="switchNav">{{item.name}}</view>
           </view>
@@ -14,12 +14,13 @@
       </view>
       <view class='goods-view-content'>
         <scroll-view scroll-y style="height: {{clientHeight - bHeiht - cartHeight + 'px'}}" scroll-into-view="{{toView}}" bindscroll="goodsScroll" scroll-with-animation="{{true}}">
-          <i-sticky scrollTop="{{scrollTop}}">
-            <i-sticky-item i-class="i-sticky-title" wx:for="{{list}}" id="{{item.viewId}}" wx:for-index="index" wx:key="{{item.id}}">
-              <view slot="title">
+          <view scrollTop="{{scrollTop}}">
+            <view class="i-sticky-wrap" wx:for="{{list}}" id="{{item.viewId}}" wx:for-index="index" wx:key="{{item.id}}">
+              <!-- <view slot="title"> -->
+              <view class="title">
                 {{item.name}}
               </view>
-              <view slot="content">
+              <!-- <view slot="content"> -->
                 <view class='i-sticky-content' wx:for="{{item.products}}" wx:for-item="itemSub" wx:for-index="subIndex" wx:key="{{itemSub.id}}">
                   <view class='products-info'>
                     <view class='info-left'>
@@ -38,9 +39,9 @@
                   </view>
                   <view class='products-desc'>{{itemSub.productDes}}</view>
                 </view>
-              </view>
-            </i-sticky-item>
-          </i-sticky>
+              <!-- </view> -->
+            </view>
+          </view>
         </scroll-view>
       </view>
     </view>
@@ -74,6 +75,6 @@
     </block>
     </scroll-view>
   </view>
-  <view class='selected-goods-footer'>已选商品</view>
+  <!-- <view class='selected-goods-footer'>已选商品</view> -->
 </view>
 <view class="selected-goods-cover-mask {{showCover ? 'show':''}}" catchtap='hideCover'></view>

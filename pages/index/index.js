@@ -15,6 +15,7 @@ Page({
     typeHeight: 0,
     goodHeight: 0,
     cartHeight: 0,
+    goodsTitleHeight: 0,
     allPrice: 0,
     cartItem: [], //购物车列表
     totalNum: 0,
@@ -51,28 +52,23 @@ Page({
   //  滚动产品
   goodsScroll(e) {
     let that = this;
-    var typeCount = that.data.list.length;
-    var goodsCount = 0
+    let typeCount = that.data.list.length;
+    let heightList = [0];
+    let curHeight = 0;
     this.data.list.forEach((item) => {
-      goodsCount += item.products.length;
-    });
-    var heightList = [0];
-    var curHeight = 0;
-    this.data.list.forEach((item) => {
-      curHeight += (this.data.typeHeight + item.products.length * this.data.goodHeight);
+      curHeight += this.data.goodsTitleHeight + (item.products.length * this.data.goodHeight);
       heightList.push(curHeight);
     });
-
-    for (var i = 0; i < heightList.length; i++) {
+    for (let i = 0; i < heightList.length; i++) {
       if (e.detail.scrollTop >= heightList[i] && e.detail.scrollTop < heightList[i + 1]) {
         this.setData({
           selectIndex: i
         });
       }
     }
-    that.setData({
-      scrollTop: e.detail.scrollTop + that.data.bHeiht + 50
-    })
+    // that.setData({
+    //   scrollTop: e.detail.scrollTop + that.data.bHeiht
+    // })
   },
   //  分类切换
   switchNav(e) {
@@ -149,6 +145,7 @@ Page({
     lists.forEach(item => {
       item.products.forEach(el => {
         el.num = 0;
+        el.totalPrice = 0;
       })
     })
     that.setData({
@@ -156,6 +153,7 @@ Page({
       allPrice: 0
     })
     that.totalNum();
+    this.handleAllPrice();
   },
   //  添加、移除购物车
   addCart(e, num) {
@@ -287,18 +285,19 @@ Page({
       userInfo: Object.assign({}, getUser),
       cartItem: cart
     })
+    that.getList();
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
           clientHeight: res.windowHeight,
           bHeiht: res.windowWidth / 750 * 260,
           typeHeight: res.windowWidth / 750 * 100,
-          goodHeight: res.windowWidth / 750 * 242,
-          cartHeight: res.windowWidth / 750 * 80
+          goodHeight: res.windowWidth / 750 * 210,
+          cartHeight: res.windowWidth / 750 * 80,
+          goodsTitleHeight: res.windowWidth / 750 * 50
         });
       }
     })
-    that.getList();
     that.totalNum();
     that.handleAllPrice();
   }
