@@ -24,7 +24,7 @@
   </view>
   <view class='order-info remark'>
   <view class='remark-title'>订单备注</view>
-    <textarea class='area' placeholder='如需备注，请在此填写' bindblur="remarkArea"></textarea>
+    <input class='area' placeholder='如需备注，请在此填写' bindblur="remarkArea"></input>
   </view>
 </view>
 <view class="submit-bar">

@@ -237,7 +237,8 @@ Page({
       } else {
         wx.showModal({
           content: '请选择商品',
-          icon: 'none'
+          icon: 'none',
+          showCancel: false
         })
       }
     } else {
