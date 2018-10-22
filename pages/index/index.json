@@ -1,7 +1,5 @@
 {
   "usingComponents": {
-    "i-sticky": "../../components/sticky/index",
-    "i-sticky-item": "../../components/sticky-item/index",
     "i-input-number": "../../components/input-number/index"
   },
   "navigationBarTitleText": "首页"

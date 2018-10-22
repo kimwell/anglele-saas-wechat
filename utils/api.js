@@ -1,5 +1,5 @@
-// export const URI = 'https://192.168.0.252'
-const URI = 'https://saas.anglele.com'
+export const URI = 'https://192.168.0.252'
+// const URI = 'https://saas.anglele.com'
 const fetch = require('./fetch')
 
 /**

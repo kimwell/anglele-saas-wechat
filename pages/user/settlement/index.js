@@ -26,18 +26,19 @@ Page({
     }]
   },
   //  切换状态
-  switchNav(e){
+  switchNav(e) {
     let id = e.currentTarget.dataset.item.id;
     this.setData({
       navIndex: id,
       'pageApi.settlementStatus': id,
+      'pageApi.id': '',
       list: [],
       loading: true,
       'pageApi.pageIndex': 0
     })
     this.getList();
   },
-  searchIput(e){
+  searchIput(e) {
     this.setData({
       'pageApi.id': e.detail.value,
       list: [],
@@ -46,27 +47,42 @@ Page({
     })
     this.getList();
   },
+  inputBlur(e) {
+    // this.setData({
+    //   'pageApi.id': e.detail.value,
+    //   list: [],
+    //   loading: true,
+    //   'pageApi.pageIndex': 0
+    // })
+    // this.getList();
+  },
   getList() {
     let that = this;
     if (!that.data.loading) return;
-      that.setData({
-        'pageApi.pageIndex': that.data.pageApi.pageIndex + 1
-      })
-      app.api.settlementPage(this.data.pageApi).then(res => {
-        if (res.code === 1000) {
-          res.data.data.forEach(el => {
-            el.cTime = app.utils.dateformat(el.updateTime, 'yyyy-MM-dd');
-          })
-          if (res.data.data.length < that.data.pageApi.pageSize) {
-            that.setData({
-              loading: false,
-            })
-          }
+    // if(that.data.pageApi.id != ''){
+    //   that.setData({
+    //     'pageApi.settlementStatus': '',
+    //     navIndex: ''
+    //   })
+    // }
+    that.setData({
+      'pageApi.pageIndex': that.data.pageApi.pageIndex + 1
+    })
+    app.api.settlementPage(this.data.pageApi).then(res => {
+      if (res.code === 1000) {
+        res.data.data.forEach(el => {
+          el.cTime = app.utils.dateformat(el.updateTime, 'yyyy-MM-dd');
+        })
+        if (res.data.data.length < that.data.pageApi.pageSize) {
           that.setData({
-            list: that.data.list.concat(res.data.data)
+            loading: false,
           })
         }
-      })
+        that.setData({
+          list: that.data.list.concat(res.data.data)
+        })
+      }
+    })
   },
   goDetail(e) {
     let item = e.currentTarget.dataset.item;
@@ -77,13 +93,13 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.getList();
   },
-    /**
+  /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     if (this.data.loading) this.getList();
   }
 })

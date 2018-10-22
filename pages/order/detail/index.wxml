@@ -48,6 +48,8 @@
         结算单号</view>
       <view class='order-info-cell'>
         <label>{{item.order.cTime}}</label>下单时间</view>
+      <view class='order-info-cell' wx:if="{{item.order.status === 9}}">
+        <label>{{item.order.cancelReason}}</label>取消原因</view>
     </view>
   </view>
   <view class='order-detail-item'>

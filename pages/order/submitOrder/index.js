@@ -15,6 +15,7 @@ Page({
     canOrder: false,
     isAgain: false // 是否再次购买进来的
   },
+  //  计算订单总价
   allPrice() {
     let price = 0;
     this.data.cartItem.forEach(item => {
@@ -60,7 +61,8 @@ Page({
         } else {
           wx.showModal({
             content: res.message,
-            icon: 'none'
+            icon: 'none',
+            showCancel: false
           })
         }
       })
@@ -114,7 +116,7 @@ Page({
       that.setData({
         cartItem: cartItem
       })
+      this.allPrice();
     }
-    this.allPrice();
   }
 })
