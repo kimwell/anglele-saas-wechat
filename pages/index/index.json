@@ -2,5 +2,6 @@
   "usingComponents": {
     "i-input-number": "../../components/input-number/index"
   },
-  "navigationBarTitleText": "首页"
+  "navigationBarTitleText": "首页",
+  "enablePullDownRefresh": true
 }

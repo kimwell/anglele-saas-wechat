@@ -101,13 +101,13 @@ Page({
       this.setData({
         isAgain: options.id ? true : false
       })
-      app.api.findOneOrder({
+      app.api.copyOrder({
         id: options.id
       }).then(res => {
         if (res.code == 1000) {
           that.setData({
-            cartItem: res.data.order.orderItems,
-            totalPrice: res.data.order.amount
+            cartItem: res.data.orderItems,
+            totalPrice: res.data.amount
           })
         }
       })

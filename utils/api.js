@@ -1,4 +1,4 @@
-export const URI = 'https://192.168.0.252'
+export const URI = 'http://192.168.0.252:8082'
 // const URI = 'https://saas.anglele.com'
 const fetch = require('./fetch')
 
@@ -60,6 +60,15 @@ export const orderCancel = (params) => {
  */
 export const findOneOrder = (params) => {
   return fetchApi('api/order/findOneOrder', params).then(res => res.data)
+}
+
+
+/**
+ * 复制订单-移动端
+ * 
+ */
+export const copyOrder = (params) => {
+  return fetchApi('api/order/copyOrder', params).then(res => res.data)
 }
 
 /**

@@ -125,7 +125,7 @@ Page({
     wx.showModal({
       title: '清除购物车',
       content: '确定清除购物车？',
-      success: function (res) {
+      success: function(res) {
         if (res.confirm) {
           that.setData({
             cartItem: [],
@@ -267,10 +267,10 @@ Page({
       }
     })
   },
-  onShow: function () {
+  onShow: function() {
     this.canOrder();
   },
-  onLoad: function () {
+  onLoad: function() {
     const that = this;
     const getUser = wx.getStorageSync('user');
     if (!getUser) {
@@ -286,7 +286,7 @@ Page({
     })
     that.getList();
     wx.getSystemInfo({
-      success: function (res) {
+      success: function(res) {
         that.setData({
           clientHeight: res.windowHeight,
           bHeiht: res.windowWidth / 750 * 260,
@@ -299,5 +299,17 @@ Page({
     })
     that.totalNum();
     that.handleAllPrice();
+  },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
+    wx.stopPullDownRefresh()
+    this.setData({
+      selectIndex: 0,
+      toView: 'goods0',
+      list: []
+    })
+    this.getList();
   }
 })
