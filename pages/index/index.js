@@ -94,7 +94,7 @@ Page({
   handleChange(e) {
     const that = this;
     const types = e.detail.type;
-    const val = e.detail.value;
+    const val = e.detail.value != '' ? e.detail.value : 0;
     const pIndex = e.currentTarget.dataset.index;
     const sIndex = e.currentTarget.dataset.subindex;
     if (types === 'plus') {
