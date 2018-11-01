@@ -11,7 +11,7 @@
       <view wx:if="{{item.status === 5}}" class="status {{'status' + item.status}}">已完成</view>
       <view wx:if="{{item.status === 4}}" class="status {{'status' + item.status}}">待收货</view>
       <view wx:if="{{item.status === 9}}" class="status {{'status' + item.status}}">已取消</view>
-      总金额：￥{{item.amount}}
+      总金额：￥{{item.status === 5 ? item.realAmount : item.amount}}
     </view>
     <view class='order-name'>{{item.orderName}}</view>
     <view class="item-imgs">

@@ -60,6 +60,7 @@ Page({
     });
     for (let i = 0; i < heightList.length; i++) {
       if (e.detail.scrollTop >= heightList[i] && e.detail.scrollTop < heightList[i + 1]) {
+        console.log(i)
         this.setData({
           selectIndex: i
         });

@@ -13,7 +13,7 @@
       <view class='totalMoney'>
         <label wx:if="{{item.settlementStatus === '0'}}" class="status {{'status-'+item.settlementStatus}}">未结算</label>
         <label wx:if="{{item.settlementStatus === '2'}}" class="status {{'status-'+item.settlementStatus}}">已结算</label>
-        总金额：￥{{item.amount}}</view>
+        总金额：￥{{item.realAmount}}</view>
       <view class="item-imgs">
         <block wx:for="{{item.orderItems}}" wx:for-index="idx" wx:for-item="img">
           <view class='item-imgs-cell' wx:if="{{idx < 3}}">
