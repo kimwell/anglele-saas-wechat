@@ -13,7 +13,8 @@ Page({
       items: []
     },
     canOrder: false,
-    isAgain: false // 是否再次购买进来的
+    isAgain: false, // 是否再次购买进来的,
+    laoding: false
   },
   //  计算订单总价
   allPrice() {
@@ -32,40 +33,46 @@ Page({
   },
   submitOrder() {
     if (this.data.canOrder) {
-      let orderArr = [];
-      this.data.cartItem.map(el => {
-        let order = {
-          productId: '',
-          num: null
-        }
-        order.productId = el.id;
-        if (this.data.isAgain) {
-          order.productId = el.productId
-        }
-        order.num = el.num;
-        orderArr.push(order)
-      })
-      this.setData({
-        'orderApi.items': orderArr
-      })
-      let params = JSON.parse(JSON.stringify(this.data.orderApi))
-      params.items = JSON.stringify(params.items)
-      app.api.saveOwnOrder(params).then(res => {
-        if (res.code === 1000) {
-          if (!this.data.isAgain) {
-            wx.removeStorageSync('cartItem')
+      if (this.data.laoding) {
+        wx.showLoading({
+          title: '提交订单中...',
+        })
+        let orderArr = [];
+        this.data.cartItem.map(el => {
+          let order = {
+            productId: '',
+            num: null
           }
-          wx.navigateTo({
-            url: '/pages/order/orderSuccess/index',
-          })
-        } else {
-          wx.showModal({
-            content: res.message,
-            icon: 'none',
-            showCancel: false
-          })
-        }
-      })
+          order.productId = el.id;
+          if (this.data.isAgain) {
+            order.productId = el.productId
+          }
+          order.num = el.num;
+          orderArr.push(order)
+        })
+        this.setData({
+          'orderApi.items': orderArr
+        })
+        let params = JSON.parse(JSON.stringify(this.data.orderApi))
+        params.items = JSON.stringify(params.items)
+        app.api.saveOwnOrder(params).then(res => {
+          wx.hideLoading()
+          if (res.code === 1000) {
+            if (!this.data.isAgain) {
+              wx.removeStorageSync('cartItem')
+            }
+            wx.navigateTo({
+              url: '/pages/order/orderSuccess/index',
+            })
+          } else {
+            wx.showModal({
+              content: res.message,
+              icon: 'none',
+              showCancel: false
+            })
+          }
+        })
+      }
     } else {
       wx.showModal({
         content: '商家暂停接单,如需下单请联系商家',
@@ -77,7 +84,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     const that = this;
     const getUser = wx.getStorageSync('user');
     that.setData({
@@ -107,14 +114,16 @@ Page({
         if (res.code == 1000) {
           that.setData({
             cartItem: res.data.orderItems,
-            totalPrice: res.data.amount
+            totalPrice: res.data.amount,
+            laoding: true
           })
         }
       })
     } else {
       const cartItem = wx.getStorageSync('cartItem')
       that.setData({
-        cartItem: cartItem
+        cartItem: cartItem,
+        laoding: true
       })
       this.allPrice();
     }

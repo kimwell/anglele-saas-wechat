@@ -7,6 +7,7 @@ Page({
     scrollTop: 0,
     clientHeight: 0,
     bHeiht: 0,
+    searchHeight: 0,
     scrollY: true,
     value1: 0,
     selectIndex: 0,
@@ -21,7 +22,54 @@ Page({
     totalNum: 0,
     showCover: false,
     canOrder: true, // 商家设置下单时间是否可以下单
-    isFirst: true
+    isFirst: true,
+    searchList: [],
+    searchVal: '',
+    searchResult: [],
+  },
+  //  搜索
+  searchInpt(e) {
+    const val = e.detail.value;
+    this.setData({
+      searchVal: val
+    })
+    this.fuzzyQuery(this.data.searchList, val)
+  },
+  // 搜索产品
+  bindconfirm(e) {
+    const val = e.detail.value || '';
+    this.setData({
+      searchVal: val
+    })
+    this.fuzzyQuery(this.data.searchList, val)
+  },
+  bindSearch(){
+    this.fuzzyQuery(this.data.searchList, this.data.searchVal)
+  },
+  //  模糊搜索产品
+  fuzzyQuery(list, keyWord) {
+    if (keyWord){
+      var arr = [];
+      for (var i = 0; i < list.length; i++) {
+        if (list[i].name.indexOf(keyWord) >= 0) {
+          arr.push(list[i]);
+        }
+      }
+      this.setData({
+        searchResult: arr
+      })
+    }else{
+      this.setData({
+        searchResult: []
+      })
+    }
+  },
+  //  清除搜索
+  clearSearch(){
+    this.setData({
+      searchVal: '',
+      searchResult: []
+    })
   },
   //  获取商品列表
   getList() {
@@ -41,7 +89,14 @@ Page({
           })
           return el;
         });
+        const searchArr = [];
+        res.data.map(el => {
+          el.products.map(sub => {
+            searchArr.push(sub)
+          })
+        })
         this.setData({
+          searchList: searchArr,
           list: lists
         })
         this.setItemNum();
@@ -60,7 +115,6 @@ Page({
     });
     for (let i = 0; i < heightList.length; i++) {
       if (e.detail.scrollTop >= heightList[i] && e.detail.scrollTop < heightList[i + 1]) {
-        console.log(i)
         this.setData({
           selectIndex: i
         });
@@ -93,30 +147,43 @@ Page({
   },
   // 商品数量加减
   handleChange(e) {
-    const that = this;
-    const types = e.detail.type;
-    const val = e.detail.value != '' ? e.detail.value : 0;
-    const pIndex = e.currentTarget.dataset.index;
-    const sIndex = e.currentTarget.dataset.subindex;
-    if (types === 'plus') {
-      const plusNum = 'list[' + pIndex + '].products[' + sIndex + '].num';
+    var that = this;
+    var types = e.detail.type;
+    var val = e.detail.value != '' ? e.detail.value : 0;
+    var froms = e.currentTarget.dataset.froms;
+    var item = e.currentTarget.dataset.item;
+    var pIndex = 0;
+    var sIndex = 0;
+    if (froms === 'search'){
+      var searchIndex = e.currentTarget.dataset.subindex;
+      that.data.list.map((el,index) =>{
+        el.products.map((sub,sIdx) =>{
+          if(sub.id === item.id){
+            pIndex = index;
+            sIndex = sIdx
+          }
+        })
+      })
+      var plusNum = 'searchResult[' + searchIndex + '].num';
       this.setData({
         [plusNum]: e.detail.value
       })
-      const totalPrice = 'list[' + pIndex + '].products[' + sIndex + '].totalPrice';
+      var totalPrice = 'searchResult[' + searchIndex + '].totalPrice';
       this.setData({
-        [totalPrice]: (this.data.list[pIndex].products[sIndex].num * this.data.list[pIndex].products[sIndex].price).toFixed(2)
+        [totalPrice]: (this.data.searchResult[searchIndex].num * this.data.searchResult[searchIndex].price).toFixed(2)
       })
-    } else {
-      const minusNum = 'list[' + pIndex + '].products[' + sIndex + '].num';
-      this.setData({
-        [minusNum]: e.detail.value
-      })
-      const totalPrice = 'list[' + pIndex + '].products[' + sIndex + '].totalPrice';
-      this.setData({
-        [totalPrice]: (this.data.list[pIndex].products[sIndex].num * this.data.list[pIndex].products[sIndex].price).toFixed(2)
-      })
+    }else{
+      pIndex = e.currentTarget.dataset.index;
+      sIndex = e.currentTarget.dataset.subindex;
     }
+    var plusNum = 'list[' + pIndex + '].products[' + sIndex + '].num';
+    this.setData({
+      [plusNum]: e.detail.value
+    })
+    var totalPrice = 'list[' + pIndex + '].products[' + sIndex + '].totalPrice';
+    this.setData({
+      [totalPrice]: (this.data.list[pIndex].products[sIndex].num * this.data.list[pIndex].products[sIndex].price).toFixed(2)
+    })
     this.handleAllPrice();
     this.addCart(e, val);
   },
@@ -126,7 +193,7 @@ Page({
     wx.showModal({
       title: '清除购物车',
       content: '确定清除购物车？',
-      success: function(res) {
+      success: function (res) {
         if (res.confirm) {
           that.setData({
             cartItem: [],
@@ -268,10 +335,10 @@ Page({
       }
     })
   },
-  onShow: function() {
+  onShow: function () {
     this.canOrder();
   },
-  onLoad: function() {
+  onLoad: function () {
     const that = this;
     const getUser = wx.getStorageSync('user');
     if (!getUser) {
@@ -287,14 +354,15 @@ Page({
     })
     that.getList();
     wx.getSystemInfo({
-      success: function(res) {
+      success: function (res) {
         that.setData({
           clientHeight: res.windowHeight,
           bHeiht: res.windowWidth / 750 * 260,
           typeHeight: res.windowWidth / 750 * 100,
           goodHeight: res.windowWidth / 750 * 210,
           cartHeight: res.windowWidth / 750 * 80,
-          goodsTitleHeight: res.windowWidth / 750 * 50
+          goodsTitleHeight: res.windowWidth / 750 * 50,
+          searchHeight: res.windowWidth / 750 * 100
         });
       }
     })
@@ -304,7 +372,7 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     wx.stopPullDownRefresh()
     this.setData({
       selectIndex: 0,

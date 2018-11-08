@@ -39,6 +39,8 @@ page {
   float: right;
   font-size: 24rpx;
   color: #333;
+  width: 80%;
+  overflow: hidden;
 }
 
 .order-item {

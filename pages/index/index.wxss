@@ -6,6 +6,85 @@
   width: 750rpx;
   height: 260rpx;
 }
+.search-main{
+  height: 60rpx;
+  padding: 20rpx 40rpx;
+  background-color: #fff;
+}
+.search-main-wrap{
+  position: relative;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 0 60rpx;
+  background: rgba(210,210,210,.6);
+  border-radius: 40rpx;
+}
+.search-txt{
+  height: 60rpx;
+  width: 100%;
+  font-size: 28rpx;
+  color: #333;
+}
+.holder-class{
+  font-size: 24rpx;
+  color: #999;
+}
+.search-icon{
+  position: absolute;
+  top: 0;
+  left: 30rpx;
+}
+.search-btn{
+  position: absolute;
+  top: 0;
+  right: 30rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+.clear-search{
+  position: absolute;
+  right: 90rpx;
+  top: 0;
+  z-index: 9;
+}
+.clear-search image{
+  width: 28rpx;
+  height: 28rpx;
+}
+.search-icon image{
+  width: 22rpx;
+  height: 22rpx;
+}
+.search-product-list{
+  padding: 0 30rpx;
+}
+.search-products{
+  width: 100%;
+}
+.search-product-list .search-product-item{
+  display: flex;
+}
+.search-product-list .products-info {
+  padding-right: 0;
+}
+.search-nodata {
+  padding-top: 40rpx;
+  width: 100%;
+  text-align: center;
+}
+.search-nodata image{
+  width: 286rpx;
+  height: 275rpx;
+}
+.search-nodata .title{
+  font-size: 30rpx;
+  color: #333;
+  padding: 30rpx 0;
+}
+.search-nodata .text{
+  font-size: 24rpx;
+  color: #999;
+}
 .goods-view {
   display: flex;
   height: 100%;
